@@ -7,6 +7,9 @@ import './loginPage.css'
 class LoginPage extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            aparecer: false
+        }
     }
     fazerLogin = (e) =>{
         e.preventDefault()
@@ -32,12 +35,18 @@ class LoginPage extends Component {
         })
         .catch((err) =>{
             err.json()
-            .then(res => console.log('catch', res))
+            .then(res => {
+                this.setState({
+                    aparecer: true
+                })
+                alert( res.message)}
+            )
         })
 
 
     }
     render() {
+
         return (
             <Fragment>
                 <Cabecalho />
@@ -54,9 +63,10 @@ class LoginPage extends Component {
                                     <label className="loginPage__label" htmlFor="senha">Senha</label> 
                                     <input ref = {(elementoInput) => this.inputSenha = elementoInput} className="loginPage__input" type="password" id="senha" name="senha"/>
                                 </div>
-                                {/* <div className="loginPage__errorBox">
+                                {this.state.aparecer === true ?
+                                <div className="loginPage__errorBox">
                                     Mensagem de erro!
-                                </div> */}
+                                </div> :''}
                                 <div className="loginPage__inputWrap">
                                     <button className="loginPage__btnLogin" type="submit">
                                         Logar

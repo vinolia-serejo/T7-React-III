@@ -5,7 +5,9 @@ import Widget from '../../components/Widget'
 import './loginPage.css'
 
 class LoginPage extends Component {
+    
     render() {
+        let aparecer = true
         return (
             <Fragment>
                 <Cabecalho />
@@ -22,9 +24,10 @@ class LoginPage extends Component {
                                     <label className="loginPage__label" htmlFor="senha">Senha</label> 
                                     <input className="loginPage__input" type="password" id="senha" name="senha"/>
                                 </div>
-                                {/* <div className="loginPage__errorBox">
-                                    Mensagem de erro!
-                                </div> */}
+                            {aparecer === tru? <div className="loginPage__errorBox"> Mensagem de erro!
+                            </div> : ''}  
+
+
                                 <div className="loginPage__inputWrap">
                                     <button className="loginPage__btnLogin" type="submit">
                                         Logar
