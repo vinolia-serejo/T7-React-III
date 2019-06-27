@@ -11,14 +11,16 @@ function NavMenu(props){
                     <strong>@{props.usuario}</strong>
                 </a>
             </li>
-            <li className="navMenu__item">
-                <a className="navMenu__link" href="">Página Inicial</a>
+            <li className={navMenu__item}>
+                <a className={navMenu__link} href="">Página Inicial</a>
             </li>
             <li className="navMenu__item">
                 <a className="navMenu__link">Hashtags</a>
             </li>
-            <li className="navMenu__item">
-                <a className="navMenu__link">Logout</a>
+            <li className={navMenuStyles.navMenu__item}>
+                <a className={NavMenuStyles.NavMenu__link} href="/logout">
+                 Logout
+                </a>
             </li>
         </ul>
     </nav>

@@ -5,6 +5,7 @@ import Dashboard from '../../components/Dashboard'
 import Widget from '../../components/Widget'
 import TrendsArea from '../../components/TrendsArea'
 import Tweet from '../../components/Tweet'
+import {postTweets} from '../../services/tweets'
 
 class Home extends Component {
   constructor(){
@@ -19,10 +20,21 @@ class Home extends Component {
     event.preventDefault()
     // const novoTweet = this.state.novoTweet
     // const anteriores = this.state.tweets
-    this.setState(stateAnterior => ({
-      tweets: [stateAnterior.novoTweet, ...stateAnterior.tweets],
-      novoTweet: ''
-    }))
+
+//usando axios, exemplo de fetch no login
+
+    const postarNovoTweet = {
+      conteudo: this.state.novoTweet,
+    }
+    postTweets(postarNovoTweet, localStorage.getItem('TOKEN'))
+    .then(resp => {
+      this.setState(stateAnterior => ({
+        tweets: [resp.data, ...stateAnterior.tweets],
+        novoTweet: ''
+      }))
+    })
+
+    
   }
   render() {
     
@@ -53,8 +65,8 @@ class Home extends Component {
                 <Widget>
                     <div className="tweetsArea">
                       {this.state.tweets.length > 0 ?
-                      this.state.tweets.map((elemento, index) =>{
-                        return <Tweet texto= {elemento} key={index}/>
+                        this.state.tweets.map((elemento, index) =>{
+                        return <Tweet {...elemento} key={index}/>
                       }) : <p>Compartilhe seu primeiro tweet</p>
                     }
                         
