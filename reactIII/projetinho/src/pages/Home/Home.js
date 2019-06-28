@@ -34,7 +34,17 @@ class Home extends Component {
       }))
     })
 
+      
+
+  }
+  removeTweet = (idRecebido) => {
     
+    // console.log('testando')
+   const testeFilter = this.state.tweets.filter(x => x._id !== idRecebido)
+   this.setState({
+     tweets: testeFilter
+   })
+
   }
   render() {
     
@@ -65,8 +75,8 @@ class Home extends Component {
                 <Widget>
                     <div className="tweetsArea">
                       {this.state.tweets.length > 0 ?
-                        this.state.tweets.map((elemento, index) =>{
-                        return <Tweet {...elemento} key={index}/>
+                        this.state.tweets.map((elemento) =>{
+                        return <Tweet {...elemento} key={elemento._id} remove={this.removeTweet}/>
                       }) : <p>Compartilhe seu primeiro tweet</p>
                     }
                         
